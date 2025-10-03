@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Website Showcase</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Use your existing CSS -->
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ---------- Hero ---------- */
+    /* ---------- Hero ---------- */
+    .showcase-hero {
+      padding: 120px 0 56px;
+      background: var(--color-cream-100, #fff);
+      border-bottom: 1px solid var(--color-border-soft, #ececec);
+    }
+
+
+    .showcase-hero .hero-title {
+      color: #e0e0e0;
+      font-size: clamp(28px, 4vw, 42px);
+      letter-spacing: -0.02em;
+      margin: 0 0 10px;
+    }
+
+    .showcase-hero .hero-subtitle {
+      color: var(--color-gray-400, #777c7c);
+      margin: 0 auto;
+      max-width: 760px;
+      font-size: clamp(15px, 2.2vw, 18px);
+      line-height: 1.6;
+    }
+
+    /* ---------- Category filters ---------- */
+    .showcase-categories {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      margin: 24px 0 30px;
+    }
+
+    .category-btn {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--color-border-soft, #ececec);
+      background: var(--color-cream-50, #fcfcf9);
+      color: var(--color-charcoal-800, #282828);
+      cursor: pointer;
+      font: inherit;
+      transition: background .2s, border-color .2s, color .2s, transform .05s;
+    }
+
+    .category-btn:hover {
+      background: #efefef;
+    }
+
+    .category-btn:active {
+      transform: translateY(1px);
+    }
+
+    .category-btn.active {
+      background: var(--color-charcoal-800, #282828);
+      color: #fff;
+      border-color: var(--color-charcoal-800, #282828);
+    }
+
+    /* ---------- Grid & cards ---------- */
+    .projects-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    }
+
+    .project-card {
+      border: 1px solid var(--color-border-soft, #ececec);
+      border-radius: 14px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow .2s, transform .08s;
+    }
+
+    .project-card:hover {
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .08);
+      transform: translateY(-2px);
+    }
+
+    .project-image {
+      aspect-ratio: 16/9;
+      background: #fafafa;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .project-content {
+      padding: 14px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .project-title {
+      margin: 0;
+      font-size: 18px;
+    }
+
+    .project-description {
+      margin: 0;
+      color: var(--color-gray-400, #777c7c);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .project-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .chip {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(var(--color-teal-500-rgb, 33, 128, 141), .08);
+      color: var(--color-teal-600, #1d7480);
+      border: 1px solid rgba(var(--color-teal-500-rgb, 33, 128, 141), .18);
+    }
+
+    .project-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* ---------- Modal (base) ---------- */
+    .modal {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .5);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-card {
+      background: #fff;
+      border-radius: 14px;
+      max-width: 960px;
+      width: 100%;
+      overflow: hidden;
+      border: 1px solid var(--color-border-soft, #ececec);
+    }
+
+    .modal-media {
+      aspect-ratio: 16/9;
+      background: #f3f3f3;
+    }
+
+    .modal-media img,
+    .modal-media video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-body {
+      padding: 16px;
+    }
+
+    .modal-title {
+      margin: 0 0 6px;
+      font-size: 20px;
+    }
+
+    .modal-desc {
+      margin: 0 0 12px;
+      color: var(--color-gray-400, #777c7c);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btn-ghost {
+      display: inline-block;
+      padding: 10px 14px;
+      border: 1px solid rgba(0, 0, 0, .12);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--color-charcoal-800, #282828);
+      background: #fff;
+    }
+
+    /* ---------- Fullscreen preview variant ---------- */
+    .modal.open .modal-card {
+      /* Toggle these to enable fullscreen preview */
+      width: 100vw;
+      height: 100vh;
+      max-width: none;
+      border-radius: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .modal.open .modal-media {
+      flex: 1 1 auto;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+
+    .modal.open .modal-media video,
+    .modal.open .modal-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* fill the viewport, crop overflow */
+      display: block;
+    }
+
+    /* Body overlay over media (readable text on video) */
+    .modal.open .modal-body {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      padding: 16px;
+      color: #fff;
+      background: linear-gradient(180deg,
+          rgba(0, 0, 0, 0) 0%,
+          rgba(0, 0, 0, .55) 60%,
+          rgba(0, 0, 0, .75) 100%);
+    }
+
+    .modal.open .btn-ghost,
+    .modal.open .btn-outline {
+      border-color: rgba(255, 255, 255, .6);
+      color: #fff;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    /* Optional: hide scroll when modal is open (CSS guard; JS also sets overflow) */
+    html:has(.modal.open),
+    body:has(.modal.open) {
+      overflow: hidden;
+    }
+
+    /* ---------- Responsive tweaks ---------- */
+    @media (max-width: 480px) {
+      .project-title {
+        font-size: 16px;
+      }
+
+      .project-description {
+        font-size: 13px;
+      }
+
+      .modal-title {
+        font-size: 18px;
+      }
+
+      .showcase-hero {
+        padding: 90px 0 40px;
+      }
+    }
+
+    /* ---------- Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+
+      .category-btn,
+      .project-card {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar (aligns to index.html structure) -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <span class="logo-text">Portfolio</span>
+      </div>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+        <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+        <li class="nav-item"><a href="index.html#projects" class="nav-link">Projects</a></li>
+        <li class="nav-item"><a href="index.html#skills" class="nav-link">Skills</a></li>
+        <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <button class="btn-resume"
+          onclick="window.open('https://drive.google.com/file/d/1pVW5ryvmPn5h9yOMW7DgkHSV0Aw_SXBy/view?usp=sharing', '_blank')">Resume</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="showcase-hero">
+    <div class="container">
+      <h1 class="hero-title">Website Showcase</h1>
+      <p class="hero-subtitle">A curated selection of modern websites—landing pages, storefronts, dashboards, and
+        marketing sites—built with performance, responsiveness, and elegant details.</p>
+    </div>
+  </header>
+
+  <!-- Filters -->
+  <section class="container" style="padding: 26px 0 8px;">
+    <div class="showcase-categories" role="tablist" aria-label="Filter websites by category">
+      <button class="category-btn active" data-category="all" role="tab" aria-selected="true">All</button>
+      <button class="category-btn" data-category="Netflix" role="tab" aria-selected="false">Netflix</button>
+      <button class="category-btn" data-category="Music-player" role="tab" aria-selected="false">Music player</button>
+      <button class="category-btn" data-category="Personal-Portfolio" role="tab" aria-selected="false">Personal
+        Portfolio</button>
+    </div>
+  </section>
+
+  <!-- Grid -->
+  <main class="container" style="padding-bottom: 56px;">
+    <div class="projects-grid" id="showcase-grid">
+      <!-- Card 1 -->
+      <article class="project-card" data-category="netflix">
+        <div class="project-image">
+          <img src="./netflix.png" alt="netflix page preview">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Netflix clone</h3>
+          <p class="project-description">A Netflix clone website is a responsive streaming UI that mirrors Netflix’s
+            browsing and playback, with a cinematic hero, horizontal genre carousels, profiles, search, and an optional
+            subscription flow for a polished, app‑like experience across web, tablet, and mobile.</p>
+          <div class="project-meta">
+            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JS</span>
+          </div>
+          <div class="project-actions">
+            <button class="btn-outline js-preview" data-modal="modal-landing">Preview</button>
+            <form action="https://roycenoel.github.io/Netflix/" method="get" target="_blank">
+              <button class="btn-outline" type="submit">View Project</button>
+            </form>
+
+
+
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 2 -->
+      <article class="project-card" data-category="music-player">
+        <div class="project-image">
+          <img src="./music-player.png" alt="Modern music-player">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Music player</h3>
+          <p class="project-description">A minimalist music player with clean controls, large album art, and intuitive
+            playback—play/pause, next/previous, scrub bar, volume, shuffle/repeat—designed to be responsive and
+            distraction‑free across mobile and desktop.</p>
+          <div class="project-meta">
+            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JS</span>
+          </div>
+          <div class="project-actions">
+            <button class="btn-outline js-preview" data-modal="modal-shop">Preview</button>
+            <form action="https://roycenoel.github.io/Music-Player/" method="get" target="_blank">
+              <button class="btn-outline" type="submit">View Project</button>
+            </form>
+          </div>
+        </div>
+      </article>
+
+      <!-- Card 3 -->
+      <article class="project-card" data-category="Personal-Portfolio">
+        <div class="project-image">
+          <img src="./portfolio.png" alt="Personal portfolio preview">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Personal Portfolio 1.0</h3>
+          <p class="project-description">Personal Portfolio 1.0 to showcase my projects</p>
+          <div class="project-meta">
+            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JS</span>
+          </div>
+          <div class="project-actions">
+            <button class="btn-outline js-preview" data-modal="modal-portfolio">Preview</button>
+            <form action="projects/personal-portfolio.html" method="get">
+              <button class="btn-outline" type="submit">View Project</button>
+            </form>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <!-- Simple Modals -->
+  <div class="modal" id="modal-landing" aria-modal="true" role="dialog" aria-label="SaaS Landing preview">
+    <div class="modal-card">
+      <div class="modal-media">
+        <iframe width="100%" height="100%"
+          src="https://www.youtube.com/embed/SfIHXXmo2uQ?autoplay=1&mute=1&loop=1&playlist=SfIHXXmo2uQ" frameborder="0"
+          allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      </div>
+      <div class="modal-body">
+        <h4 class="modal-title">Netflix</h4>
+        <p class="modal-desc">Conversion‑focused layout with clean sections and fast performance.</p>
+        <div class="modal-actions">
+          <a class="btn-outline" href="https://roycenoel.github.io/Netflix/">Open Project</a>
+          <button class="btn-ghost js-close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modern Shop -->
+  <div class="modal" id="modal-shop" aria-modal="true" role="dialog" aria-label="Modern Shop preview">
+    <div class="modal-card">
+      <div class="modal-media">
+        <iframe width="100%" height="100%"
+          src="https://www.youtube.com/embed/nb3iBLG90qo?si=x08vgCX5VHL93O35" frameborder="0"
+          allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      </div>
+      <div class="modal-body">
+        <h4 class="modal-title">Modern Shop</h4>
+        <p class="modal-desc">Product listing, filters, and cart drawer interactions.</p>
+        <div class="modal-actions">
+          <a class="btn-outline" href="https://roycenoel.github.io/Music-Player/">Open Project</a>
+          <button class="btn-ghost js-close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Personal Portfolio -->
+  <div class="modal" id="modal-portfolio" aria-modal="true" role="dialog" aria-label="Personal Portfolio preview">
+    <div class="modal-card">
+      <div class="modal-media">
+        <iframe width="100%" height="100%"
+          src="https://www.youtube.com/embed/j2iqD0OI1y8?si=YxV6NYm6S-szM_r-" frameborder="0"
+          allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      </div>
+      <div class="modal-body">
+        <h4 class="modal-title">Personal Portfolio 1.0</h4>
+        <p class="modal-desc">Sleek, fast, and content‑first layout.</p>
+        <div class="modal-actions">
+          <a class="btn-outline" href="projects/personal-portfolio.html">Open Project</a>
+          <button class="btn-ghost js-close">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p>© 2025 Portfolio Website. Crafted with passion.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ---------- Category filtering (unchanged) ----------
+    const filters = Array.from(document.querySelectorAll('.category-btn'));
+    const cards = Array.from(document.querySelectorAll('.project-card'));
+    function setActive(btn) {
+      filters.forEach(b => {
+        const active = b === btn;
+        b.classList.toggle('active', active);
+        b.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+    }
+    function filter(cat) {
+      cards.forEach(card => {
+        const show = cat === 'all' || card.dataset.category === cat || card.dataset.category === cat.toLowerCase();
+        card.style.display = show ? '' : 'none';
+      });
+    }
+    filters.forEach(btn => {
+      btn.addEventListener('click', () => { setActive(btn); filter(btn.dataset.category); });
+      btn.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }
+      });
+    });
+
+    // ---------- Modal controls with autoplay video ----------
+    const modals = new Map(Array.from(document.querySelectorAll('.modal')).map(m => [m.id, m]));
+    let activeModal = null;
+
+    function tryPlayVideos(modalEl) {
+      modalEl.querySelectorAll('video').forEach(v => {
+
+        v.muted = true;
+        v.playsInline = true;
+        v.setAttribute('playsinline', '');
+        v.removeAttribute('controls');
+        if (!v.hasAttribute('autoplay')) v.setAttribute('autoplay', '');
+        if (!v.hasAttribute('loop')) v.setAttribute('loop', '');
+
+        const playPromise = v.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+          playPromise.catch(() => {
+
+          });
+        }
+      });
+    }
+
+    function stopVideos(modalEl) {
+      modalEl.querySelectorAll('video').forEach(v => {
+        v.pause();
+        v.currentTime = 0;
+      });
+    }
+
+    function openModalById(id) {
+      const modal = modals.get(id);
+      if (!modal) return;
+      if (activeModal && activeModal !== modal) {
+        stopVideos(activeModal);
+        activeModal.classList.remove('open');
+      }
+      modal.classList.add('open');
+      activeModal = modal;
+      document.documentElement.style.overflow = 'hidden';
+      tryPlayVideos(modal);
+    }
+
+    function closeActiveModal() {
+      if (!activeModal) return;
+      stopVideos(activeModal);
+      activeModal.classList.remove('open');
+      activeModal = null;
+      document.documentElement.style.overflow = '';
+    }
+
+    // Bind Preview triggers
+    document.querySelectorAll('.js-preview').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-modal');
+        openModalById(id);
+      });
+    });
+
+    // Backdrop click and explicit close
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', e => {
+        if (e.target === modal && modal === activeModal) closeActiveModal();
+      });
+      modal.querySelectorAll('.js-close').forEach(close => {
+        close.addEventListener('click', () => { if (modal === activeModal) closeActiveModal(); });
+      });
+    });
+
+    // Escape closes current modal
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && activeModal) {
+        e.stopPropagation();
+        closeActiveModal();
+      }
+    });
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graphics & UI/UX - Royce Gonsalves</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Quicksand:wght@300..700&display=swap"
+        rel="stylesheet">
+    <style>
+        /* Graphics section centering */
+        .graphics-section {
+            padding: var(--space-24) 0;
+            background: var(--white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .graphics-section .container {
+            width: 100%;
+            max-width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        /* Carousel-specific styles - FIXED CENTERING */
+        .carousel-container {
+            background-color: #000000;
+            width: 100vw;
+            max-width: 100vw;
+            height: 100vh;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            padding-bottom: 3px;
+            background: #00000000;
+            border: 1.4px solid #ddd;
+            color: #ffffff;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            transition: 0.3s;
+            user-select: none;
+        }
+
+        .carousel-arrow:hover {
+            scale: 1.2;
+            box-shadow: 0 10px 32px rgba(0, 0, 0, 0.2);
+        }
+
+        .carousel-arrow.left {
+            left: 20px;
+        }
+
+        .carousel-arrow.right {
+            right: 20px;
+        }
+
+        .carousel {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: visible;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-track {
+            position: relative;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .carousel-item {
+            border-radius: 30px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform-origin: center center;
+            transition: all 0.7s cubic-bezier(0.25, 0.66, 0.45, 0.94);
+            cursor: pointer;
+            user-select: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform-style: preserve-3d;
+            will-change: transform, opacity;
+        }
+
+        .carousel-item img {
+            height: 70vh;
+            max-width: 350px;
+            width: auto;
+            border-radius: 20px;
+            box-shadow: 0 24px 72px rgba(0, 0, 0, 0.15);
+            background: #fff;
+            border: 1.5px solid #eee;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            display: block;
+            object-fit: contain;
+            user-select: none;
+        }
+
+        /* FIXED Carousel positions - properly centered */
+        .carousel-item.pos-0 {
+            transform: translate(calc(-50% - 420px), -50%) scale(0.6);
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .carousel-item.pos-1 {
+            transform: translate(calc(-50% - 240px), -50%) scale(0.7);
+            opacity: 0.7;
+            z-index: 2;
+        }
+
+        .carousel-item.pos-2 {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+            z-index: 4;
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.25);
+        }
+
+        .carousel-item.pos-3 {
+            transform: translate(calc(-50% + 240px), -50%) scale(0.7);
+            opacity: 0.7;
+            z-index: 2;
+        }
+
+        .carousel-item.pos-4 {
+            transform: translate(calc(-50% + 420px), -50%) scale(0.6);
+            opacity: 0.4;
+            z-index: 1;
+        }
+
+        .carousel-item.hidden {
+            opacity: 0;
+            transform: translate(-50%, -50%) scale(0.5);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .carousel-item.pos-2:hover img {
+            transform: scale(1.05);
+            box-shadow: 0 38px 110px rgba(0, 0, 0, 0.35);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .carousel-item.pos-0 {
+                transform: translate(calc(-50% - 350px), -50%) scale(0.8);
+            }
+
+            .carousel-item.pos-1 {
+                transform: translate(calc(-50% - 175px), -50%) scale(0.9);
+            }
+
+            .carousel-item.pos-3 {
+                transform: translate(calc(-50% + 175px), -50%) scale(0.9);
+            }
+
+            .carousel-item.pos-4 {
+                transform: translate(calc(-50% + 350px), -50%) scale(0.8);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel-container {
+                padding: 0 10px;
+                height: 60vh;
+            }
+
+            .carousel-item img {
+                height: 50vh;
+                max-width: 280px;
+            }
+
+            .carousel-item.pos-0 {
+                transform: translate(calc(-50% - 300px), -50%) scale(0.75);
+                opacity: 0.3;
+            }
+
+            .carousel-item.pos-1 {
+                transform: translate(calc(-50% - 150px), -50%) scale(0.85);
+                opacity: 0.6;
+            }
+
+            .carousel-item.pos-2 {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 1;
+            }
+
+            .carousel-item.pos-3 {
+                transform: translate(calc(-50% + 150px), -50%) scale(0.85);
+                opacity: 0.6;
+            }
+
+            .carousel-item.pos-4 {
+                transform: translate(calc(-50% + 300px), -50%) scale(0.75);
+                opacity: 0.3;
+            }
+
+            .carousel-arrow {
+                width: 50px;
+                height: 50px;
+                font-size: 24px;
+            }
+
+            .carousel-arrow.left {
+                left: 15px;
+            }
+
+            .carousel-arrow.right {
+                right: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-container {
+                height: 50vh;
+            }
+
+            .carousel-item img {
+                height: 45vh;
+                width: auto;
+                max-width: 85vw;
+                object-fit: contain;
+            }
+
+            /* Mobile: Show only center image */
+            .carousel-item {
+                opacity: 0 !important;
+                pointer-events: none !important;
+                z-index: 0 !important;
+                transform: translate(-50%, -50%) scale(0.8) !important;
+            }
+
+            .carousel-item.pos-2 {
+                opacity: 1 !important;
+                pointer-events: auto !important;
+                z-index: 10 !important;
+                transform: translate(-50%, -50%) scale(1) !important;
+            }
+
+            .carousel-arrow {
+                width: 40px;
+                height: 40px;
+                font-size: 20px;
+            }
+
+            .carousel-arrow.left {
+                left: 10px;
+            }
+
+            .carousel-arrow.right {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="index.html#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="index.html#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="graphics.html" class="nav-link active">Graphics</a></li>
+                <li class="nav-item"><a href="index.html#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="btn-resume"
+                    onclick="window.open('https://drive.google.com/file/d/1pVW5ryvmPn5h9yOMW7DgkHSV0Aw_SXBy/view?usp=sharing', '_blank')">Resume</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="graphics-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-line">Creative</span>
+                    <span class="hero-line hero-name">UI/UX Design</span>
+                    <span class="hero-line hero-tagline">Visual Excellence</span>
+                </h1>
+                <p class="hero-description">
+                    Explore my collection of stunning UI/UX designs, graphics, and visual elements crafted to create
+                    exceptional user experiences across various platforms.
+                </p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('graphics-projects')">View Designs</button>
+                    <button class="btn-secondary" onclick="scrollToSection('contact')">Get In Touch</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Graphics Projects Section -->
+    <section class="projects graphics-section" id="graphics-projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Design Portfolio</h2>
+                <p class="section-subtitle">Responsive UI/UX designs with stunning visual elements</p>
+            </div>
+
+            <!-- Graphics Carousel -->
+            <div class="carousel-container" role="region" aria-label="Graphics carousel">
+                <button class="carousel-arrow left" id="prevBtn" aria-label="Previous">&#8249;</button>
+                <div class="carousel">
+                    <div class="carousel-track" id="carouselTrack">
+                        <div class="carousel-item"><img src="1.jpg" alt="Graphics Design 1"></div>
+                        <div class="carousel-item"><img src="2.jpg" alt="Graphics Design 2"></div>
+                        <div class="carousel-item"><img src="3.jpg" alt="Graphics Design 3"></div>
+                        <div class="carousel-item"><img src="4.jpg" alt="Graphics Design 4"></div>
+                        <div class="carousel-item"><img src="5.jpg" alt="Graphics Design 5"></div>
+                        <div class="carousel-item"><img src="6.jpg" alt="Graphics Design 6"></div>
+                        <div class="carousel-item"><img src="7.jpg" alt="Graphics Design 7"></div>
+                        <div class="carousel-item"><img src="8.jpg" alt="Graphics Design 8"></div>
+                        <div class="carousel-item"><img src="9.jpg" alt="Graphics Design 9"></div>
+                        <div class="carousel-item"><img src="10.jpg" alt="Graphics Design 10"></div>
+                        <div class="carousel-item"><img src="11.jpg" alt="Graphics Design 11"></div>
+                        <div class="carousel-item"><img src="12.jpg" alt="Graphics Design 12"></div>
+                        <div class="carousel-item"><img src="13.jpg" alt="Graphics Design 13"></div>
+                        <div class="carousel-item"><img src="14.jpg" alt="Graphics Design 14"></div>
+                        <div class="carousel-item"><img src="15.jpg" alt="Graphics Design 15"></div>
+                        <div class="carousel-item"><img src="16.jpg" alt="Graphics Design 16"></div>
+                        <div class="carousel-item"><img src="17.jpg" alt="Graphics Design 17"></div>
+                        <div class="carousel-item"><img src="18.jpg" alt="Graphics Design 18"></div>
+                        <div class="carousel-item"><img src="19.jpg" alt="Graphics Design 19"></div>
+                        <div class="carousel-item"><img src="20.jpg" alt="Graphics Design 20"></div>
+                        <div class="carousel-item"><img src="21.jpg" alt="Graphics Design 21"></div>
+                        <div class="carousel-item"><img src="22.jpg" alt="Graphics Design 22"></div>
+                        <div class="carousel-item"><img src="23.jpg" alt="Graphics Design 23"></div>
+                        <div class="carousel-item"><img src="24.jpg" alt="Graphics Design 24"></div>
+                        <div class="carousel-item"><img src="25.jpg" alt="Graphics Design 25"></div>
+                    </div>
+
+
+                </div>
+                <button class="carousel-arrow right" id="nextBtn" aria-label="Next">&#8250;</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Royce Gonsalves. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling function
+        function scrollToSection(sectionId) {
+            if (sectionId === 'contact') {
+                if (window.location.pathname.includes('graphics.html')) {
+                    window.location.href = 'index.html#contact';
+                    return;
+                }
+            }
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else {
+                window.location.href = `index.html#${sectionId}`;
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function () {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+
+        // Animate elements on scroll
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.section-title, .section-subtitle');
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        }
+
+        // Carousel functionality
+        class FullScreenCarousel {
+            constructor() {
+                this.items = document.querySelectorAll('.carousel-item');
+                this.currentIndex = 0;
+                this.totalItems = this.items.length;
+                this.isAnimating = false;
+                this.updatePositions();
+                this.bindEvents();
+            }
+
+            updatePositions() {
+                this.items.forEach((item, index) => {
+                    item.classList.remove('pos-0', 'pos-1', 'pos-2', 'pos-3', 'pos-4', 'hidden');
+                    let relativeIndex = index - this.currentIndex;
+                    if (relativeIndex < -2) relativeIndex += this.totalItems;
+                    else if (relativeIndex > 2) relativeIndex -= this.totalItems;
+
+                    if (relativeIndex >= -2 && relativeIndex <= 2) {
+                        item.classList.add(`pos-${relativeIndex + 2}`);
+                    } else {
+                        item.classList.add('hidden');
+                    }
+                });
+            }
+
+            next() {
+                if (this.isAnimating) return;
+                this.isAnimating = true;
+                this.currentIndex = (this.currentIndex + 1) % this.totalItems;
+                this.updatePositions();
+                setTimeout(() => this.isAnimating = false, 600);
+            }
+
+            prev() {
+                if (this.isAnimating) return;
+                this.isAnimating = true;
+                this.currentIndex = (this.currentIndex - 1 + this.totalItems) % this.totalItems;
+                this.updatePositions();
+                setTimeout(() => this.isAnimating = false, 600);
+            }
+
+            bindEvents() {
+                const nextBtn = document.getElementById('nextBtn');
+                const prevBtn = document.getElementById('prevBtn');
+
+                if (nextBtn) nextBtn.addEventListener('click', () => this.next());
+                if (prevBtn) prevBtn.addEventListener('click', () => this.prev());
+
+                this.items.forEach((item, index) => {
+                    item.addEventListener('click', () => {
+                        if (!this.isAnimating && index !== this.currentIndex) {
+                            this.currentIndex = index;
+                            this.updatePositions();
+                        }
+                    });
+                });
+
+                // Keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.prev();
+                    else if (e.key === 'ArrowRight') this.next();
+                });
+
+                // Touch navigation
+                let startX = null, startY = null;
+                document.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                });
+
+                document.addEventListener('touchend', (e) => {
+                    if (!startX || !startY) return;
+
+                    let endX = e.changedTouches[0].clientX;
+                    let endY = e.changedTouches[0].clientY;
+                    let deltaX = startX - endX;
+                    let deltaY = startY - endY;
+
+                    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 50) {
+                        if (deltaX > 0) this.next();
+                        else this.prev();
+                    }
+
+                    startX = null;
+                    startY = null;
+                });
+            }
+        }
+
+        // Initialize everything when DOM is loaded
+        window.addEventListener('scroll', animateOnScroll);
+        document.addEventListener('DOMContentLoaded', () => {
+            animateOnScroll();
+            new FullScreenCarousel();
+        });
+    </script>
+</body>
+
+</html>

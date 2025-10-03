@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website - Developer & Designer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-text">Portfolio</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <button class="btn-resume"
+                    onclick="window.open('https://drive.google.com/file/d/1pVW5ryvmPn5h9yOMW7DgkHSV0Aw_SXBy/view?usp=sharing', '_blank')">Resume</button>
+
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="hero-line">Hello, I'm</span>
+                    <span class="hero-line hero-name">Royce gonsalves</span>
+                    <span class="hero-line hero-tagline">Developer & Designer</span>
+                </h1>
+                <p class="hero-description">Crafting exceptional digital experiences through innovative design and
+                    cutting-edge development.</p>
+                <div class="hero-buttons">
+                    <button class="btn-primary" onclick="scrollToSection('projects')">View My Work</button>
+                    <button class="btn-secondary" onclick="scrollToSection('contact')">Get In Touch</button>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="network-bg">
+                    <canvas id="networkCanvas"></canvas>
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    
+
+    <!-- About/Experience Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experience</h2>
+                <p class="section-subtitle">Building innovative solutions across various domains</p>
+            </div>
+            <div class="experience-grid">
+                <div class="experience-card" data-category="Social Media Platform">
+                    <div class="card-header">
+                        <h3 class="card-title">Founder & Lead Developer</h3>
+                        <span class="card-company">Spreadlink</span>
+                    </div>
+                    <div class="card-content">
+                        <p>Founded and led the development of Spreadlink, a global social media platform designed to
+                            connect users across the world. Architected and implemented the entire tech stack,
+                            delivering a high-quality application with an emphasis on intuitive UI/UX and robust,
+                            scalable server-side infrastructure. Drove the project from concept to launch, combining
+                            technical expertise with product vision to build a platform that fosters worldwide
+                            connection and engagement.</p>
+                    </div>
+                    <div class="card-category">
+                        <span class="category-tag">Social Media Platform</span>
+                    </div>
+                </div>
+
+                <div class="experience-card" data-category="Digital Marketing">
+                    <div class="card-header">
+                        <h3 class="card-title">SEO Specialist</h3>
+                        <span class="card-company">Fashion360</span>
+                    </div>
+                    <div class="card-content">
+                        <p>As Fashion 360's SEO Specialist, I optimized online content, led SEO strategy development,
+                            and stayed on top of industry trends for enhanced digital success.</p>
+                    </div>
+                    <div class="card-category">
+                        <span class="category-tag">Digital Marketing</span>
+                    </div>
+                </div>
+
+                <div class="experience-card" data-category="Development">
+                    <div class="card-header">
+                        <h3 class="card-title">Web & Android Developer</h3>
+                        <span class="card-company">Xtrio</span>
+                    </div>
+                    <div class="card-content">
+                        <p>At Xtrio, I specialize in crafting captivating digital experiences through web and Android
+                            development, emphasizing innovative design and seamless user engagement and successfully
+                            acquired 200,000+ users within 30 days through advanced SEO techniques.</p>
+                    </div>
+                    <div class="card-category">
+                        <span class="category-tag">Development</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Showcasing innovation and creativity</p>
+            </div>
+            <div class="project-categories">
+                <button class="category-btn active" data-category="all">All</button>
+                <button class="category-btn" data-category="applications">Applications</button>
+                <button class="category-btn" data-category="websites">Websites</button>
+                <button class="category-btn" data-category="games">Games</button>
+                <button class="category-btn" data-category="models3d">3D Models</button>
+                <button class="category-btn" data-category="graphics">Graphics</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="applications">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <img class="project-icon" src="spreadlink.png" alt="App icon">
+                        </div>
+
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Application</h3>
+                        <p class="project-description">The Next-Generation Social Media Platform for Entertainment and
+                            Creative Expression. built to empower creators</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>Unleash Creative Freedom - Dynamic platform for photos, videos, and music</li>
+                                <li>Seamless Multi-Network Sharing - Advanced content distribution technology</li>
+                                <li>Amplify Your Influence - Cutting-edge amplification tools</li>
+                                <li>Collaborative Creative Hub - Connect with like-minded creators</li>
+                            </ul>
+                        </div>
+
+                        <form action="./applications.html" method="get">
+                            <button class="btn-outline" type="submit">View Project</button>
+                        </form>
+
+
+
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="websites">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <img class="project-icon" src="./musicplayer.jpg" alt="App icon">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Websites</h3>
+                        <p class="project-description">Collection of websites projects</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>Conversion‑focused UX — clear hierarchy, crisp typography, and focused CTAs</li>
+                                <li>Performance first — optimized images, fast LCP/INP, minimal layout shift</li>
+                                <li>Responsive by design — seamless layouts for mobile, tablet, and desktop</li>
+                                <li>Accessible patterns — semantic HTML, keyboard support, and contrast</li>
+                                <li>Modular sections — reusable components for landing, shop, and dashboard</li>
+                            </ul>
+                        </div>
+
+                        <form action="./web.html" method="get">
+                            <button class="btn-outline" type="submit">View Project</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="project-card" data-category="games">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <img class="project-icon" src="carimg2.jpg" alt="App icon">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Games</h3>
+                        <p class="project-description">
+                            A curated selection of captivating mobile games offering diverse gameplay styles and
+                            innovative mechanics designed for players across mobile platforms.
+                        </p>
+                        <div class="project-features">
+                            <ul>
+                                <li>Engaging and immersive gameplay experiences</li>
+                                <li>Intuitive mobile controls with seamless UI</li>
+                                <li>Polished graphics and animations</li>
+                                <li>Innovative mechanics and level designs</li>
+                                <li>Multiplayer and competitive modes</li>
+                            </ul>
+                        </div>
+                        <form action="./games.html" method="get">
+                            <button class="btn-outline" type="submit">View Project</button>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="project-card" data-category="models3d">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <img class="project-icon" src="car3.jpg" alt="App icon">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">3D Models</h3>
+                        <p class="project-description">Professional 3D models and visualizations for various
+                            applications, showcasing advanced modeling techniques and creative design solutions.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>High-quality models with detailed textures and materials</li>
+                                <li>Accurate and optimized geometry for rendering and real-time use</li>
+                                <li>Versatile models suitable for games, simulations, and presentations</li>
+                                <li>Showcasing expertise in automotive, architecture, product design, and character
+                                    modeling</li>
+                                <li>Professional lighting and rendering setups for enhanced visuals</li>
+                            </ul>
+                        </div>
+                        <form action="./3dmodels.html" method="get">
+                            <button class="btn-outline" type="submit">View Project</button>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="project-card" data-category="Programs">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <img class="project-icon" src="programs.jpg" alt="App icon">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">Programs</h3>
+                        <p class="project-description">
+                            Showcasing diverse programming projects that demonstrate proficiency in coding,
+                            problem-solving, and software development. These projects highlight practical applications
+                            using various languages, frameworks, and tools to build innovative solutions and engaging
+                            applications.
+                        </p>
+                        <div class="project-features">
+                            <ul>
+                                <li>Utility programs designed to automate everyday tasks</li>
+                                <li>Custom scripts to improve workflow efficiency</li>
+                                <li>Cross-platform applications with user-friendly interfaces</li>
+                                <li>Innovative problem-solving using modern programming languages</li>
+                                <li>Projects focused on simplifying complex processes and saving time</li>
+                            </ul>
+                        </div>
+                        <form action="./programs.html" method="get">
+                            <button class="btn-outline" type="submit">View Project</button>
+                        </form>
+                    </div>
+                </div>
+
+
+
+                <div class="project-card" data-category="graphics">
+                    <div class="project-image">
+                        <div class="project-placeholder">
+                            <img class="project-icon" src="graphic.png" alt="App icon">
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3 class="project-title">UI/UX Design</h3>
+                        <p class="project-description">Explore my collection of intuitive and aesthetically pleasing
+                            UI/UX designs created to enhance user engagement and maximize usability across digital
+                            platforms.</p>
+                        <div class="project-features">
+                            <ul>
+                                <li>User research and personal development</li>
+                                <li>Wireframing, prototyping, and iterative design</li>
+                                <li>Interactive and responsive interface design</li>
+                                <li>Usability testing and accessibility compliance</li>
+                                <li>Experience with design tools like Figma, Sketch, and Adobe XD</li>
+                            </ul>
+                        </div>
+                        <form action="./graphics.html" method="get">
+                            <button class="btn-outline" type="submit">View Project</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills" id="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Skills & Technologies</h2>
+                <p class="section-subtitle">Expertise across the development spectrum</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-item" data-skill="JavaScript">
+                    <img class="skill-icon-img" src="./js.png" alt="JavaScript logo">
+                    <span class="skill-name">JavaScript</span>
+                </div>
+
+                <div class="skill-item" data-skill="React">
+                    <img class="skill-icon-img" src="./physics.png" alt="React logo">
+                    <span class="skill-name">React</span>
+                </div>
+
+                <div class="skill-item" data-skill="Node.js">
+                    <img class="skill-icon-img" src="./node-js.png" alt="Node.js logo">
+                    <span class="skill-name">Node.js</span>
+                </div>
+
+                <div class="skill-item" data-skill="java">
+                    <img class="skill-icon-img" src="./java.png" alt="Java icon">
+                    <span class="skill-name">Java</span>
+                </div>
+
+                <div class="skill-item" data-skill="MySQL">
+                    <img class="skill-icon-img" src="./mysql-database.png" alt="MySQL icon">
+                    <span class="skill-name">MySQL</span>
+                </div>
+
+                <div class="skill-item" data-skill="Python">
+                    <img class="skill-icon-img" src="./python.png" alt="Python logo">
+                    <span class="skill-name">Python</span>
+                </div>
+
+                <div class="skill-item" data-skill="AI">
+                    <img class="skill-icon-img" src="./artificial-intelligence.png" alt="AI icon">
+                    <span class="skill-name">AI Prompt</span>
+                </div>
+
+                <div class="skill-item" data-skill="CSS/SASS">
+                    <img class="skill-icon-img" src="./text.png" alt="CSS/SASS logo">
+                    <span class="skill-name">CSS</span>
+                </div>
+
+                <div class="skill-item" data-skill="UI/UX Design">
+                    <img class="skill-icon-img" src="./designer (1).png" alt="UI/UX Design icon">
+                    <span class="skill-name">UI/UX Design</span>
+                </div>
+
+                <div class="skill-item" data-skill="SEO">
+                    <img class="skill-icon-img" src="./seo.png" alt="SEO icon">
+                    <span class="skill-name">SEO</span>
+                </div>
+
+                <div class="skill-item" data-skill="Mobile Development">
+                    <img class="skill-icon-img" src="./app-development.png" alt="Mobile development icon">
+                    <span class="skill-name">Mobile Development</span>
+                </div>
+
+                <div class="skill-item" data-skill="Full-Stack Development">
+                    <img class="skill-icon-img" src="./coding (1).png" alt="Full-Stack development icon">
+                    <span class="skill-name">Full-Stack Development</span>
+                </div>
+
+                <div class="skill-item" data-skill="Social Media Platforms">
+                    <img class="skill-icon-img" src="./publicity.png" alt="Social media platforms icon">
+                    <span class="skill-name">Social Media Platforms</span>
+                </div>
+
+                <div class="skill-item" data-skill="3D Modeling">
+                    <img class="skill-icon-img" src="./cube.png" alt="3D modeling icon">
+                    <span class="skill-name">3D Modeling</span>
+                </div>
+
+                <div class="skill-item" data-skill="Graphic Design">
+                    <img class="skill-icon-img" src="./layers.png" alt="Graphic design icon">
+                    <span class="skill-name">Graphic Design</span>
+                </div>
+
+                <div class="skill-item" data-skill="Game">
+                    <img class="skill-icon-img" src="./unity.png" alt="Unity icon">
+                    <span class="skill-name">Unity</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Let's Connect</h2>
+                <p class="section-subtitle">Ready to bring your ideas to life</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📧</div>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <a href="mailto:contact@portfolio.com">roycenoel2001@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <h4>Follow Me</h4>
+                        <div class="social-grid">
+                            <a href="https://github.com/roycenoel" target="_blank" class="social-link">
+                                <span class="social-icon">🐙</span>
+                                <span>GitHub</span>
+                            </a>
+                            <a href="https://www.linkedin.com/in/royce-gonsalves-478782212/" target="_blank"
+                                class="social-link">
+                                <span class="social-icon">💼</span>
+                                <span>LinkedIn</span>
+                            </a>
+                            <a href="https://www.instagram.com/royce_gonsalves_/" target="_blank" class="social-link">
+                                <span class="social-icon">🐦</span>
+                                <span>Instagram</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" class="form-input" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" class="form-input" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" class="form-input" rows="4" placeholder="Message"
+                                required></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">Send Message</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 Portfolio Website. Crafted with passion.</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="app.js"></script>
+</body>
+
+</html>

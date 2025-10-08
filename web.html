@@ -3,11 +3,50 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Website Showcase</title>
+  <title>Website Showcase - Royce Gonsalves</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- Use your existing CSS -->
+
+  <!-- Canonical URL for Custom Domain -->
+  <link rel="canonical" href="https://roycenoel.space/web.html">
+
+  <!-- SEO tags -->
+  <meta name="description"
+    content="A curated website showcase by Royce Gonsalves: Modern landing pages, dashboards, portfolios, and creative web projects designed with performance, responsiveness, and elegant detail.">
+  <meta name="keywords"
+    content="Website Showcase, Portfolio, Royce Gonsalves, Landing Page, Dashboard, Storefront, Responsive Web Design, HTML, CSS, JS, Modern UI">
+  <meta name="author" content="Royce Gonsalves">
+
+  <!-- Favicon/Logo (same folder as HTML) -->
+  <link rel="icon" type="image/png" href="portfolioIcon.png">
+
+  <!-- OpenGraph Social Metadata -->
+  <meta property="og:title" content="Website Showcase - Royce Gonsalves">
+  <meta property="og:description"
+    content="Explore modern web projects including landing pages, dashboards, and portfolios by Royce Gonsalves.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://roycenoel.space/web.html">
+  <meta property="og:image" content="https://roycenoel.space/portfolioIcon.png">
+
+  <!-- Rich Snippet Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org/",
+    "@type": "Person",
+    "name": "Royce Gonsalves",
+    "url": "https://roycenoel.space/",
+    "jobTitle": "Developer & Designer",
+    "sameAs": [
+      "https://github.com/roycenoel",
+      "https://www.linkedin.com/in/royce-gonsalves-478782212/",
+      "https://www.instagram.com/royce_gonsalves_/"
+    ],
+    "knowsAbout": ["Web Development", "UI Design", "Creative Websites", "Responsive Layouts", "Landing Pages", "Portfolios"]
+  }
+  </script>
+
   <link rel="stylesheet" href="style.css">
-  <style>
+
+    <style>
     /* ---------- Hero ---------- */
     /* ---------- Hero ---------- */
     .showcase-hero {
@@ -295,6 +334,7 @@
   </style>
 </head>
 
+
 <body>
 
   <!-- Navbar (aligns to index.html structure) -->
@@ -365,6 +405,7 @@
         </div>
       </article>
 
+
       <!-- Card 2 -->
       <article class="project-card" data-category="music-player">
         <div class="project-image">
@@ -387,6 +428,24 @@
         </div>
       </article>
 
+      <article class="project-card" data-category="SVG-to-Vector">
+        <div class="project-image">
+          <img src="./Svg2Vector.png" alt="Modern music-player">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Svg to vector converter</h3>
+          <p class="project-description">SVG to Vector Drawable tool is a web-based application designed to convert SVG (Scalable Vector Graphics) files into Android Vector Drawable XML format.</p>
+          <div class="project-meta">
+            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JS</span>
+          </div>
+          <div class="project-actions">
+            <form action="https://roycenoel.github.io/Svg2VectorConverter/" method="get" target="_blank">
+              <button class="btn-outline" type="submit">View Project</button>
+            </form>
+          </div>
+        </div>
+      </article>
+
       <!-- Card 3 -->
       <article class="project-card" data-category="Personal-Portfolio">
         <div class="project-image">
@@ -400,9 +459,6 @@
           </div>
           <div class="project-actions">
             <button class="btn-outline js-preview" data-modal="modal-portfolio">Preview</button>
-            <form action="projects/personal-portfolio.html" method="get">
-              <button class="btn-outline" type="submit">View Project</button>
-            </form>
           </div>
         </div>
       </article>
@@ -433,9 +489,8 @@
   <div class="modal" id="modal-shop" aria-modal="true" role="dialog" aria-label="Modern Shop preview">
     <div class="modal-card">
       <div class="modal-media">
-        <iframe width="100%" height="100%"
-          src="https://www.youtube.com/embed/nb3iBLG90qo?si=x08vgCX5VHL93O35" frameborder="0"
-          allowfullscreen allow="autoplay; encrypted-media"></iframe>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/nb3iBLG90qo?si=x08vgCX5VHL93O35"
+          frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
       </div>
       <div class="modal-body">
         <h4 class="modal-title">Modern Shop</h4>
@@ -452,9 +507,8 @@
   <div class="modal" id="modal-portfolio" aria-modal="true" role="dialog" aria-label="Personal Portfolio preview">
     <div class="modal-card">
       <div class="modal-media">
-        <iframe width="100%" height="100%"
-          src="https://www.youtube.com/embed/j2iqD0OI1y8?si=YxV6NYm6S-szM_r-" frameborder="0"
-          allowfullscreen allow="autoplay; encrypted-media"></iframe>
+        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/j2iqD0OI1y8?si=YxV6NYm6S-szM_r-"
+          frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
       </div>
       <div class="modal-body">
         <h4 class="modal-title">Personal Portfolio 1.0</h4>

@@ -34,6 +34,14 @@ function initSpotlight() {
             link: "spreadlink.html"
         },
         {
+            title: "Ominos AI Assistant",
+            category: "Application",
+            desc: "Advanced AI Assistant featuring coding, real-time voice, and image generation.",
+            tech: "Android • Kotlin • Generative AI",
+            img: "ominos.png",
+            link: "ominos.html"
+        },
+        {
             title: "Music Player online",
             category: "Website",
             desc: "Minimalist music player with clean controls and modern design.",
